@@ -10,4 +10,9 @@ public class Goal : MonoBehaviour
     {
         Time.timeScale = timeScale;
     }
+
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log("Goal");
+        
+    }
 }

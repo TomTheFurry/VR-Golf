@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Goal");
+        Debug.Log("Ball - Goal");
         transform.position = pos + Vector3.forward * Random.Range(-20, 20);
         transform.rotation = Quaternion.identity;
         rig.velocity = Vector3.zero;
