@@ -16,8 +16,10 @@ public class XRControl : MonoBehaviour
     void Update()
     {
         var relMove = MoveAction.action.ReadValue<Vector2>();
-        var move = MoveHandRef.TransformDirection(new Vector3(relMove.x, 0, relMove.y));
-        move = Vector3.Normalize(Vector3.ProjectOnPlane(move, XROrigin.up)) * moveSpeed;
+        Debug.Log($"Move {relMove}");
+        var yawRot = Quaternion.Euler(0, MoveHandRef.eulerAngles.y, 0);
+        var moveDir = yawRot * new Vector3(relMove.x, 0, relMove.y);
+        var move = Vector3.Normalize(moveDir) * moveSpeed;
         XROrigin.position += move * Time.deltaTime;
     }
 }
