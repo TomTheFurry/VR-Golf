@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Ball - Goal");
+        //Debug.Log("Ball - Goal");
         transform.position = RandPos;
         transform.rotation = Quaternion.identity;
         rig.velocity = Vector3.zero;
