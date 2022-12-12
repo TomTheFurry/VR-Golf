@@ -7,13 +7,19 @@ using UnityEngine.InputSystem;
 public class PCControl : MonoBehaviour
 {
     public Rigidbody target;
+    public Transform grabSource;
+    public PCGrabInteractable grabbedObject = null;
     public Camera camera;
     
     public InputActionReference MoveAction;
     public InputActionReference LookAction;
+    public InputActionReference GrabAction;
 
     public float moveForce = 2;
     public float moveTargetSpeed = 10;
+
+    public float grabRange = 100;
+    public float grabSphere = 1f;
 
     void Update()
     {
@@ -34,7 +40,24 @@ public class PCControl : MonoBehaviour
         pitch = Mathf.Clamp(pitch - look.y, -90, 90);
         camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
 
+        if (GrabAction.action.triggered) {
 
-
+            if (grabbedObject != null) {
+                grabbedObject.ReleaseObject();
+                grabbedObject = null;
+            }
+            else {
+                // Do raycast
+                var ray = new Ray(camera.transform.position, camera.transform.forward);
+                if (Physics.SphereCast(ray, grabSphere, out var hit, grabRange)) {
+                    if (hit.rigidbody != null && hit.rigidbody.TryGetComponent<PCGrabInteractable>(out var grab)) {
+                        grab.TryGrabObject(grabSource, () => {
+                            grabbedObject = grab;
+                            Debug.Log("Grabbed");
+                        });
+                    }
+                }
+            }
+        }
     }
 }
