@@ -109,12 +109,11 @@ public static class XRManager
 
         OnXRDevicesChanged.Invoke();
     }
-
-    private static bool _isInitialized = false;
+    
     [RuntimeInitializeOnLoadMethod]
     public static void Init()
     {
-        if (_isInitialized)
+        if (IsInitialized)
         {
             Debug.LogWarning("XRManager already initialized");
             return;

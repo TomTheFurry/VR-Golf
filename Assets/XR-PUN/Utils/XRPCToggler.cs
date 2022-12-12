@@ -1,8 +1,12 @@
-public class XRPCToggler : XRToggler
+public class XRPCToggler : XRToggler 
 {
+    public bool OnlyOnInit = true;
+    public new ToggleMode ToggleMode = ToggleMode.Destory;
 
-    public override bool InitOnly { get; set; } = false;
-    public override ToggleMode Toggle { get; set; } = ToggleMode.Toggle;
+    public bool PCMode = false;
+
+    public override bool InitOnly => OnlyOnInit;
+    public override ToggleMode Toggle => ToggleMode;
 
     public XRPCToggler() : base()
     {
@@ -10,6 +14,6 @@ public class XRPCToggler : XRToggler
 
     protected override bool ShouldEnable()
     {
-        return XRManager.HasXRDevices;
+        return PCMode ^ XRManager.HasXRDevices;
     }
 }
