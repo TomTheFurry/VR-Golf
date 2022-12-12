@@ -9,16 +9,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public abstract class XRToggler : MonoBehaviour
-{
+{              
     private static void UpdateAllInstances()
     {
         var list = Resources.FindObjectsOfTypeAll<XRToggler>();
+        Debug.Log($"Found {list.Length} XRToggler instances");
         Array.ForEach(list, t => {
             if (!(t.InitOnly && t._isInited) &&
                 (
                     t.Toggle == ToggleMode.Toggle
-                    || (t.enabled && t.Toggle == ToggleMode.EnableOnly)
+                    || (t.enabled && t.Toggle == ToggleMode.DisableOnly)
                     || (!t.enabled && t.Toggle == ToggleMode.EnableOnly)
+                    || (t.enabled && t.Toggle == ToggleMode.Destory)
                 )
                )
             t.UpdateState(); 
@@ -47,7 +49,19 @@ public abstract class XRToggler : MonoBehaviour
     protected void UpdateState()
     {
         _isInited = true;
-        gameObject.SetActive(ShouldEnable());
+        Debug.Log($"Updating object {gameObject}...");
+        bool isActive = gameObject.activeSelf;
+        bool target = ShouldEnable();
+        if (isActive != target) {
+            if (!target && Toggle == ToggleMode.Destory) {
+                Debug.Log($"Destorying object {gameObject}...");
+                Destroy(gameObject);
+            }
+            else {
+                Debug.Log($"Setting active state of {gameObject} to {target}...");
+                gameObject.SetActive(target);
+            }
+        }
     }
 
     public XRToggler()
@@ -57,7 +71,7 @@ public abstract class XRToggler : MonoBehaviour
     // OnAwake
     void Awake()
     {
-        if (!_isInited)
+        if (!_isInited && XRManager.IsInitialized)
         {
             UpdateState();
         }
