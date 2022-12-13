@@ -7,7 +7,18 @@ public class MenuManager : MonoBehaviour {
     public static MenuManager Instance;
     public static Menu usingMenu;
 
-    public Camera cam;
+    public Camera PCCam;
+    public Camera XRCam;
+
+    Camera cam;
+    Camera Cam {
+        get => cam;
+        set {
+            canvas.worldCamera = value;
+            cam = value;
+        }
+    }
+    public Canvas canvas;
 
     [SerializeField] Menu[] menus;
 
@@ -22,6 +33,16 @@ public class MenuManager : MonoBehaviour {
                 CloseMenu(menus[i]);
             }
         }
+        
+    }
+
+    private void Start() {
+        Cam = PCCam;
+        if (XRManager.HasXRDevices)
+            Cam = XRCam;
+
+        MenuMouseClick.usingCam = Cam;
+
         OpenMenu(usingMenu);
     }
 
@@ -62,7 +83,7 @@ public class MenuManager : MonoBehaviour {
             case "Back": case "back": target = usingMenu.back; break;
         }
 
-        Quaternion rotateTarget = Quaternion.LookRotation((target.position - cam.transform.position).normalized);
+        Quaternion rotateTarget = Quaternion.LookRotation((target.position - Cam.transform.position).normalized);
         startRotate(rotateTarget);
     }
 
@@ -71,11 +92,11 @@ public class MenuManager : MonoBehaviour {
     IEnumerator RotateCamera(Quaternion rotateTarget, float moveSpeed = 0.15f) {
         startTime = Time.time;
 
-        while (Quaternion.Angle(cam.transform.rotation, rotateTarget) > moveSpeed) {
-            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, rotateTarget, moveSpeed * (Time.time - startTime));
+        while (Quaternion.Angle(Cam.transform.rotation, rotateTarget) > moveSpeed) {
+            Cam.transform.rotation = Quaternion.Slerp(Cam.transform.rotation, rotateTarget, moveSpeed * (Time.time - startTime));
             yield return null;
         }
-        cam.transform.rotation = rotateTarget;
+        Cam.transform.rotation = rotateTarget;
         coroutineRotate = null;
         yield return null;
     }
