@@ -96,7 +96,7 @@ public class PCGrabInteractable : MonoBehaviourPun, IOnPhotonViewOwnerChange {
                     // Sync roll
                     Vector3 targetUp = CurrentLocalGrabber.up;
                     Vector3 axis = Vector3.Cross(target.transform.up, targetUp);
-                    float angle = Vector3.Angle(target.transform.up, targetUp) * 0.5f;
+                    float angle = Vector3.Angle(target.transform.up, targetUp) * 1f;
                     x += axis * angle;
                 }
                 var w = x.normalized * theta / Time.deltaTime;
