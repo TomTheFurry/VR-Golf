@@ -7,7 +7,6 @@ public class MenuManager : MonoBehaviour {
     public static MenuManager Instance;
     public static Menu usingMenu;
 
-    public Transform startPos;
     public Camera cam;
 
     [SerializeField] Menu[] menus;
@@ -18,7 +17,6 @@ public class MenuManager : MonoBehaviour {
         for (int i = 0; i < menus.Length; i++) {
             if (menus[i].open) {
                 usingMenu = menus[i];
-                break;
             }
             else {
                 CloseMenu(menus[i]);
@@ -95,9 +93,9 @@ public class MenuManager : MonoBehaviour {
     }
 
 
-    public void startEvent() {
-        stopRotate();
-        cam.transform.position = startPos.position;
-        cam.transform.rotation = startPos.rotation;
-    }
+    //public void startEvent() {
+    //    stopRotate();
+    //    cam.transform.position = startPos.position;
+    //    cam.transform.rotation = startPos.rotation;
+    //}
 }
