@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuMouseClick : MonoBehaviour {
     public static Camera usingCam;
@@ -21,6 +22,10 @@ public class MenuMouseClick : MonoBehaviour {
                     Debug.Log(string.Format("Click: {0}", menuButton.text.text));
                     menuButton.triggerEvent.Invoke();
                 }
+            }
+            InputField inputField = hit.transform.GetComponent<InputField>();
+            if (inputField != null) {
+                inputField.Select();
             }
         }
     }

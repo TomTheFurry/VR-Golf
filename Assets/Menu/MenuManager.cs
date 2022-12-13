@@ -5,27 +5,51 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour {
     public static MenuManager Instance;
-    public Transform startPos;
+    public static Menu usingMenu;
 
+    public Transform startPos;
     public Camera cam;
 
-    public Menu usingMenu;
+    [SerializeField] Menu[] menus;
 
-    private void Awake() {
+    void Awake() {
         Instance = this;
+        usingMenu = menus[0];
+        for (int i = 0; i < menus.Length; i++) {
+            if (menus[i].open) {
+                usingMenu = menus[i];
+                break;
+            }
+            else {
+                CloseMenu(menus[i]);
+            }
+        }
+        OpenMenu(usingMenu);
     }
 
-    public void startEvent() {
-        stopRotate();
-        cam.transform.position = startPos.position;
-        cam.transform.rotation = startPos.rotation;
+    public void OpenMenu(string menuName) {
+        for (int i = 0; i < menus.Length; i++) {
+            if (menus[i].menuName == menuName) {
+                menus[i].Open();
+            }
+            else if (menus[i].open) {
+                CloseMenu(menus[i]);
+            }
+        }
     }
 
-    public void openMenu(Menu menu) {
-        usingMenu.gameObject.SetActive(false);
-        usingMenu = menu;
-        usingMenu.gameObject.SetActive(true);
+    public void OpenMenu(Menu menu) {
+        for (int i = 0; i < menus.Length; i++) {
+            if (menus[i].open) {
+                CloseMenu(menus[i]);
+            }
+        }
+        menu.Open();
         changeView("front");
+    }
+
+    public void CloseMenu(Menu menu) {
+        menu.Close();
     }
 
     public void changeView(string targetWall) {
@@ -36,8 +60,7 @@ public class MenuManager : MonoBehaviour {
             case "Left": case "left": target = usingMenu.left; break;
             case "Ceiling": case "ceiling": target = usingMenu.ceiling; break;
             default:
-            case "Front":
-            case "front": target = usingMenu.front; break;
+            case "Front": case "front": target = usingMenu.front; break;
             case "Back": case "back": target = usingMenu.back; break;
         }
 
@@ -69,5 +92,12 @@ public class MenuManager : MonoBehaviour {
             StopCoroutine(coroutineRotate);
             coroutineRotate = null;
         }
+    }
+
+
+    public void startEvent() {
+        stopRotate();
+        cam.transform.position = startPos.position;
+        cam.transform.rotation = startPos.rotation;
     }
 }
