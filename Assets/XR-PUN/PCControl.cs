@@ -39,15 +39,15 @@ public class PCControl : MonoBehaviour
 
         if (grabbedObject != null && RaiseLowerGrabAction.action.ReadValue<float>() != 0f) {
             var loc = grabSource.localPosition;
-            loc.y += RaiseLowerGrabAction.action.ReadValue<float>() / 1000f;
+            loc.y -= RaiseLowerGrabAction.action.ReadValue<float>() / 5000f;
             loc.y = Math.Clamp(loc.y, 0.2f, 1.0f);
             grabSource.localPosition = loc;
         }
 
         if (grabbedObject != null && HoldRotateAction.action.ReadValue<float>() != 0f) {
             grabHoldRotation += look * new Vector2(1, 0.2f);
-            grabHoldRotation.x = Math.Clamp(grabHoldRotation.x, -85, 85);
-            grabHoldRotation.y = Math.Clamp(grabHoldRotation.y, -85, 85);
+            grabHoldRotation.x = Math.Clamp(grabHoldRotation.x, -60, 60);
+            grabHoldRotation.y = Math.Clamp(grabHoldRotation.y, -15, 15);
             Debug.Log(grabHoldRotation);
             Quaternion newQ = Quaternion.Euler(-grabHoldRotation.y, grabHoldRotation.x, 0);
 
@@ -73,7 +73,7 @@ public class PCControl : MonoBehaviour
             else {
                 // Do raycast
                 var ray = new Ray(camera.transform.position, camera.transform.forward);
-                if (Physics.SphereCast(ray, grabSphere, out var hit, grabRange)){
+                if (Physics.SphereCast(ray, grabSphere, out var hit, grabRange, LayerMask.GetMask("Item"))){
                     if (hit.rigidbody != null && hit.rigidbody.TryGetComponent<PCGrabInteractable>(out var grab)) {
                         grab.TryGrabObject(grabSource, () => {
                             grabbedObject = grab;
