@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
     public static MenuManager Instance;
@@ -114,9 +115,10 @@ public class MenuManager : MonoBehaviour {
     }
 
 
-    //public void startEvent() {
-    //    stopRotate();
-    //    cam.transform.position = startPos.position;
-    //    cam.transform.rotation = startPos.rotation;
-    //}
+    public void startEvent() {
+        stopRotate();
+        //cam.transform.position = startPos.position;
+        //cam.transform.rotation = startPos.rotation;
+        SceneManager.LoadScene("Level_1");
+    }
 }
