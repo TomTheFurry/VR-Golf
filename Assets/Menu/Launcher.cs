@@ -20,7 +20,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
     [SerializeField] Transform playerListContent;
     [SerializeField] GameObject PlayerListItemPrefab;
 
-    [SerializeField] GameObject startGameButton;  //only host can click startGame button
+    [SerializeField] GameObject startGameButton;
 
     void Awake() {
         Instance = this;
@@ -61,14 +61,12 @@ public class Launcher : MonoBehaviourPunCallbacks {
         // MenuManager.Instance.OpenMenu("room");
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
 
-        //task2
         Player[] players = PhotonNetwork.PlayerList;
 
         for (int i = 0; i < players.Count(); i++) {
             Instantiate(PlayerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
         }
 
-        //task3 
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
 
     }
