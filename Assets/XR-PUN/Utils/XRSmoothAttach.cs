@@ -6,7 +6,7 @@ public class XRSmoothAttach : MonoBehaviour
 
     public float rotationP = 0.02f;
     public float rotationD = 0.2f;
-    public float positionP = 0.02f;
+    public float positionP = 5f;
     public float positionD = 0.2f;
 
     void Update()

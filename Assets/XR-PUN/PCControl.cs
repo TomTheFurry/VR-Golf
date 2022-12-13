@@ -9,7 +9,7 @@ public class PCControl : MonoBehaviour
     public Rigidbody target;
     public Transform grabSource;
     public PCGrabInteractable grabbedObject = null;
-    public Camera camera;
+    public new Camera camera;
     
     public InputActionReference MoveAction;
     public InputActionReference LookAction;
@@ -39,6 +39,7 @@ public class PCControl : MonoBehaviour
         pitch = (pitch + 180) % 360 - 180;
         pitch = Mathf.Clamp(pitch - look.y, -90, 90);
         camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+        grabSource.localEulerAngles = new Vector3(pitch, 0, 0);
 
         if (GrabAction.action.triggered) {
 
@@ -49,7 +50,7 @@ public class PCControl : MonoBehaviour
             else {
                 // Do raycast
                 var ray = new Ray(camera.transform.position, camera.transform.forward);
-                if (Physics.SphereCast(ray, grabSphere, out var hit, grabRange)) {
+                if (Physics.SphereCast(ray, grabSphere, out var hit, grabRange)){
                     if (hit.rigidbody != null && hit.rigidbody.TryGetComponent<PCGrabInteractable>(out var grab)) {
                         grab.TryGrabObject(grabSource, () => {
                             grabbedObject = grab;
