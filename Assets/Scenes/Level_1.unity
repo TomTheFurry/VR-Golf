@@ -566,7 +566,7 @@ MonoBehaviour:
   TriedGrabber: {fileID: 0}
   rotationP: 0.4
   rotationD: 0.4
-  positionP: 4
+  positionP: 8
   positionD: 0.5
   attachYOffset: 0.15
   changeYSpeed: 0.01
