@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class MenuMouseClick : MonoBehaviour {
     public static Camera usingCam;
-    
-
-    private void Awake() {
-        usingCam = GetComponent<Camera>();
-    }
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {

@@ -2076,7 +2076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyOnInit: 1
-  ToggleMode: 3
+  ToggleMode: 2
   PCMode: 0
 --- !u!114 &1303261901
 MonoBehaviour:
@@ -2171,7 +2171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6204602899018475822, guid: f6970021937797c40b8990f50aa0267b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6204602899501732238, guid: f6970021937797c40b8990f50aa0267b, type: 3}
       propertyPath: m_Layer
@@ -2954,7 +2954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyOnInit: 1
-  ToggleMode: 3
+  ToggleMode: 2
   PCMode: 1
 --- !u!114 &1971285408
 MonoBehaviour:
