@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MenuMouseClick : MonoBehaviour {
     public static Camera usingCam;
+    public Transform rightHand;
+    public InputActionReference rightHandInput;
+    public Transform leftHand;
+    public InputActionReference leftHandInput;
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) || rightHandInput.action.triggered || leftHandInput.action.triggered) {
             Ray ray = usingCam.ScreenPointToRay(Input.mousePosition);
+            if (rightHandInput.action.triggered)
+                ray = new Ray(rightHand.position, rightHand.forward);
+            else if (leftHandInput.action.triggered)
+                ray = new Ray(leftHand.position, leftHand.forward);
+
             RaycastHit hit;
 
             bool isHit = Physics.Raycast(ray, out hit, 100);

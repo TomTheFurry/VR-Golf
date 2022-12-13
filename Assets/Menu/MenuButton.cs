@@ -12,4 +12,8 @@ public class MenuButton : MonoBehaviour
     private void Awake() {
         
     }
+
+    public void Trigger() {
+        triggerEvent.Invoke();
+    }
 }

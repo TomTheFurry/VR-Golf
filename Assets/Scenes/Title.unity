@@ -1258,6 +1258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7d12903d1560c4581720c9511d13b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightHand: {fileID: 0}
+  rightHandInput: {fileID: 0}
+  leftHand: {fileID: 0}
+  leftHandInput: {fileID: 0}
 --- !u!1 &227982683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,6 +2055,9 @@ MonoBehaviour:
   MoveAction: {fileID: -1680190386980627800, guid: bbf6dfa0cf0346a4db22047bfad9687e, type: 3}
   LookAction: {fileID: -5630151704836100654, guid: bbf6dfa0cf0346a4db22047bfad9687e, type: 3}
   GrabAction: {fileID: 1120369429361536294, guid: bbf6dfa0cf0346a4db22047bfad9687e, type: 3}
+  HoldRotateAction: {fileID: 0}
+  RaiseLowerGrabAction: {fileID: 0}
+  FlipClubAction: {fileID: 0}
   moveForce: 100
   moveTargetSpeed: 50
   grabRange: 100
@@ -3018,7 +3025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &447505080
 Transform:
   m_ObjectHideFlags: 0
@@ -5624,7 +5631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6204602899018475819, guid: f6970021937797c40b8990f50aa0267b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6204602899018475819, guid: f6970021937797c40b8990f50aa0267b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9443,6 +9450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7d12903d1560c4581720c9511d13b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightHand: {fileID: 1027439247}
+  rightHandInput: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  leftHand: {fileID: 1506589581}
+  leftHandInput: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &2081196397
 PrefabInstance:
   m_ObjectHideFlags: 0
