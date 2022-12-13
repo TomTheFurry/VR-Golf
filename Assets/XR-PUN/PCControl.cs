@@ -14,12 +14,17 @@ public class PCControl : MonoBehaviour
     public InputActionReference MoveAction;
     public InputActionReference LookAction;
     public InputActionReference GrabAction;
+    public InputActionReference HoldRotateAction;
+    public InputActionReference RaiseLowerGrabAction;
+    public InputActionReference FlipClubAction;
 
     public float moveForce = 2;
     public float moveTargetSpeed = 10;
 
     public float grabRange = 100;
     public float grabSphere = 1f;
+    private Vector2 grabHoldRotation;
+    private bool ClubFlipped = false;
 
     void Update()
     {
@@ -32,14 +37,32 @@ public class PCControl : MonoBehaviour
         var accel = Vector3.ClampMagnitude(targetVel - relVel, maxAccel);
         target.AddRelativeForce(accel, ForceMode.VelocityChange);
 
-        target.transform.rotation *= Quaternion.Euler(0, look.x, 0);
-        
+        if (grabbedObject != null && RaiseLowerGrabAction.action.ReadValue<float>() != 0f) {
+            var loc = grabSource.localPosition;
+            loc.y += RaiseLowerGrabAction.action.ReadValue<float>() / 1000f;
+            loc.y = Math.Clamp(loc.y, 0.2f, 1.0f);
+            grabSource.localPosition = loc;
+        }
 
-        float pitch = camera.transform.localEulerAngles.x;
-        pitch = (pitch + 180) % 360 - 180;
-        pitch = Mathf.Clamp(pitch - look.y, -90, 90);
-        camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
-        grabSource.localEulerAngles = new Vector3(pitch, 0, 0);
+        if (grabbedObject != null && HoldRotateAction.action.ReadValue<float>() != 0f) {
+            grabHoldRotation += look * new Vector2(1, 0.2f);
+            grabHoldRotation.x = Math.Clamp(grabHoldRotation.x, -85, 85);
+            grabHoldRotation.y = Math.Clamp(grabHoldRotation.y, -85, 85);
+            Debug.Log(grabHoldRotation);
+            Quaternion newQ = Quaternion.Euler(-grabHoldRotation.y, grabHoldRotation.x, 0);
+
+            grabSource.localEulerAngles = new Vector3(camera.transform.localEulerAngles.x, 0, 0);
+            grabSource.localRotation *= newQ;
+        }
+        else {
+            grabHoldRotation = Vector2.zero;
+            target.transform.rotation *= Quaternion.Euler(0, look.x, 0);
+            float pitch = camera.transform.localEulerAngles.x;
+            pitch = (pitch + 180) % 360 - 180;
+            pitch = Mathf.Clamp(pitch - look.y, -90, 90);
+            camera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            grabSource.localEulerAngles = new Vector3(pitch, 0, 0);
+        }
 
         if (GrabAction.action.triggered) {
 
@@ -59,6 +82,11 @@ public class PCControl : MonoBehaviour
                     }
                 }
             }
+        }
+        if (FlipClubAction.action.triggered) ClubFlipped = !ClubFlipped;
+
+        if (ClubFlipped) {
+            grabSource.Rotate(Vector3.forward, 180, Space.Self);
         }
     }
 }
