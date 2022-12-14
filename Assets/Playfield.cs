@@ -10,6 +10,8 @@ public interface IPlayfieldTracked {
 
 public class Playfield : MonoBehaviour
 {
+    public Transform SpawnPoint;
+
     public Dictionary<IPlayfieldTracked, int> TrackedObjects = new Dictionary<IPlayfieldTracked, int>();
     
     public void NotifyTrackedEnterSubSection(IPlayfieldTracked tracked) {

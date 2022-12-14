@@ -20,7 +20,8 @@ public abstract class XRToggler : MonoBehaviour
                     t.Toggle == ToggleMode.Toggle
                     || (t.enabled && t.Toggle == ToggleMode.DisableOnly)
                     || (!t.enabled && t.Toggle == ToggleMode.EnableOnly)
-                    || (t.enabled && t.Toggle == ToggleMode.Destory)
+                    || (t.enabled && t.Toggle == ToggleMode.DestoryOnly)
+                    || t.Toggle == ToggleMode.EnableOrDestry
                 )
                )
             t.UpdateState(); 
@@ -39,7 +40,8 @@ public abstract class XRToggler : MonoBehaviour
         Toggle,
         EnableOnly,
         DisableOnly,
-        Destory,
+        EnableOrDestry,
+        DestoryOnly,
     }
 
     public abstract ToggleMode Toggle { get; }
@@ -53,7 +55,7 @@ public abstract class XRToggler : MonoBehaviour
         bool isActive = gameObject.activeSelf;
         bool target = ShouldEnable();
         if (isActive != target) {
-            if (!target && Toggle == ToggleMode.Destory) {
+            if (!target && (Toggle == ToggleMode.DestoryOnly || Toggle == ToggleMode.EnableOrDestry)) {
                 Debug.Log($"Destorying object {gameObject}...");
                 Destroy(gameObject);
             }

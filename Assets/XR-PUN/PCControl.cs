@@ -48,7 +48,7 @@ public class PCControl : MonoBehaviour
             grabHoldRotation += look * new Vector2(1, 0.2f);
             grabHoldRotation.x = Math.Clamp(grabHoldRotation.x, -60, 60);
             grabHoldRotation.y = Math.Clamp(grabHoldRotation.y, -15, 15);
-            Debug.Log(grabHoldRotation);
+            //Debug.Log(grabHoldRotation);
             Quaternion newQ = Quaternion.Euler(-grabHoldRotation.y, grabHoldRotation.x, 0);
 
             grabSource.localEulerAngles = new Vector3(camera.transform.localEulerAngles.x, 0, 0);

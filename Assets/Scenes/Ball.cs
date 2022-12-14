@@ -2,41 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class Ball : MonoBehaviour, IPlayfieldTracked
 {
-    Vector3 RandForce => Quaternion.AngleAxis(Random.Range(angleMin, angleMax), Vector3.up) * (Vector3.left * Random.Range(forceMin, forceMax));
-    Vector3 RandPos => pos + Vector3.forward * Random.Range(-20, 20);
-
     Rigidbody rig;
-    Vector3 pos;
-    public float forceMin = 1800f;
-    public float forceMax = 2200f;
-    public float angleMin = -30f;
-    public float angleMax = 30f;
+    Vector3 lastStablePos;
+
+    public Playfield activePlayfield = null;
 
     void Start()
     {
-        pos = transform.position;
-        pos.z=  0;
-        transform.position = RandPos;
         rig = GetComponent<Rigidbody>();
-        rig.AddForce(RandForce);
     }
 
     private void Update() {
         if (rig.IsSleeping()) {
-            rig.AddForce(RandForce);
+            lastStablePos = transform.position;
+            rig.WakeUp();
         }
     }
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log("Ball - Goal");
-        transform.position = RandPos;
+    public void ResetBall(Vector3 f) {
+        transform.position = f;
         transform.rotation = Quaternion.identity;
         rig.velocity = Vector3.zero;
         rig.angularVelocity = Vector3.zero;
-        rig.AddForce(RandForce);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Goal")) {
+            Debug.Log("Ball - Goal");
+            ResetBall(activePlayfield?.SpawnPoint.position ?? lastStablePos);
+        }
+    }
+
+    public void OnEnterPlayfield(Playfield f) {
+
+    }
+
+    public void OnExitPlayfield(Playfield f) {
+        if (activePlayfield != null && activePlayfield == f) {
+            Debug.Log("Ball - Outside playfield! RESET!");
+            ResetBall(lastStablePos);
+        }
     }
 }
