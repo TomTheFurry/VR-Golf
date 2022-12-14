@@ -1,7 +1,7 @@
 public class XRPCToggler : XRToggler 
 {
     public bool OnlyOnInit = true;
-    public new ToggleMode ToggleMode = ToggleMode.Destory;
+    public new ToggleMode ToggleMode = ToggleMode.EnableOrDestry;
 
     public bool PCMode = false;
 
