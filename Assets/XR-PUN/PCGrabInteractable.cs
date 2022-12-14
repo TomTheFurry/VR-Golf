@@ -18,10 +18,10 @@ public class PCGrabInteractable : MonoBehaviourPun, IOnPhotonViewOwnerChange {
     public Action AsyncCallback = null;
     public Transform TriedGrabber = null;
     
-    public float rotationP = 0.02f;
-    public float rotationD = 0.2f;
-    public float positionP = 5f;
-    public float positionD = 0.2f;
+    public float rotationP = 0.4f;
+    public float rotationD = 0.4f;
+    public float positionP = 8f;
+    public float positionD = 0.5f;
     public float attachYOffset = 0.15f;
     public float changeYSpeed = 0.01f;
 
