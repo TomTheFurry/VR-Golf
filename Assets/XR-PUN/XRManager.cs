@@ -42,7 +42,7 @@ public static class XRManager
 
     public static XRInputSubsystem? RightHandInput { get; private set; }
 
-    public static event Action OnXRDevicesChanged;
+    public static event Action OnXRDevicesChanged = delegate { };
 
     private static void UpdateOnce()
     {
