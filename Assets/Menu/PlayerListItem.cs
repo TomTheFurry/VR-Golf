@@ -5,8 +5,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerListItem : MonoBehaviourPunCallbacks
-{
+public class PlayerListItem : MonoBehaviourPunCallbacks {
+	public string Text {
+		get => text.text;
+		set => text.text = value;
+	}
+
 	[SerializeField] TMP_Text text;
 	Player player;
 

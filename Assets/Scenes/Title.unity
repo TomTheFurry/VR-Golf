@@ -5844,6 +5844,8 @@ MonoBehaviour:
   XROrigin: {fileID: 1236205029}
   MoveHandRef: {fileID: 1506589581}
   MoveAction: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  GrabMoveAction: {fileID: 0}
+  Interactor: {fileID: 0}
   moveSpeed: 20
 --- !u!114 &1236205032
 MonoBehaviour:
@@ -8738,23 +8740,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1772759976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Script: {fileID: 11500000, guid: a0734bb4380cb2f4993f637c32590eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 10
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  padding:
+    Top: 0.8
+    Bottom: 0
+  Spacing: 0.2
 --- !u!1 &1781355124
 GameObject:
   m_ObjectHideFlags: 0
