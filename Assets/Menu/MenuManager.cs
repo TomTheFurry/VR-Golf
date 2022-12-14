@@ -47,6 +47,10 @@ public class MenuManager : MonoBehaviour {
         OpenMenu(usingMenu);
     }
 
+    private void FixedUpdate() {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+    }
+
     public void OpenMenu(string menuName) {
         for (int i = 0; i < menus.Length; i++) {
             if (menus[i].menuName == menuName) {

@@ -7,15 +7,18 @@ using UnityEngine.UI;
 public class MenuMouseClick : MonoBehaviour {
     public static Camera usingCam;
 
-    [SerializeField] Camera cam;
+    public Camera cam;
     public static GameObject hitObj { get; private set; }
     public Transform rightHand;
     public InputActionReference rightHandInput;
 
-    private void Awake() {
-        if (cam != null)
+    public void Awake() {
+        if (cam != null) {
             usingCam = cam;
+            GetComponent<Canvas>().worldCamera = usingCam;
+        }
     }
+
     void Update() {
         Ray ray = usingCam.ScreenPointToRay(Input.mousePosition);
         if (XRManager.HasXRDevices && rightHand != null)

@@ -1444,6 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7d12903d1560c4581720c9511d13b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   rightHand: {fileID: 0}
   rightHandInput: {fileID: 0}
 --- !u!1 &227982683
@@ -6351,6 +6352,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 2038068068}
     m_Modifications:
+    - target: {fileID: 4703504115640592846, guid: f6970021937797c40b8990f50aa0267b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6204602899018475816, guid: f6970021937797c40b8990f50aa0267b, type: 3}
       propertyPath: sceneViewId
       value: 2
@@ -9868,7 +9873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -9876,46 +9881,74 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2038068067}
+      objectReference: {fileID: 447899108}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2038068067}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2038068067}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: startEvent
+      value: Disconnect
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: startEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: OpenMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuManager, Assembly-CSharp
+      value: Launcher, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: MenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: left
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1681983556}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
@@ -9924,6 +9957,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715455543345820633, guid: 72df1ca29e7407243b5e4bb39e58228b, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Menu, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10570,6 +10607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b7d12903d1560c4581720c9511d13b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   rightHand: {fileID: 1027439247}
   rightHandInput: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &2081196397

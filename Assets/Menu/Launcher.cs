@@ -53,14 +53,16 @@ public class Launcher : MonoBehaviourPunCallbacks {
     }
 
     public override void OnDisable() {
-        if (PhotonNetwork.NetworkingClient.LoadBalancingPeer.PeerState == PeerStateValue.Connecting)
-            PhotonNetwork.Disconnect();
+        base.OnDisable();
+    }
+
+    public void Disconnect() {
+        PhotonNetwork.Disconnect();
     }
 
     public void GoBack() {
         MenuManager.Instance.OpenMenu("Main");
-        if (!PhotonNetwork.IsConnected)
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public override void OnConnectedToMaster() {
