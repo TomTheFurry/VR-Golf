@@ -2124,7 +2124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnlyOnInit: 1
   ToggleMode: 2
-  PCMode: 0
+  PCMode: 1
 --- !u!114 &1303261901
 MonoBehaviour:
   m_ObjectHideFlags: 0
