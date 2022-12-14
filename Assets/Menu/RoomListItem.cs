@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class RoomListItem : MonoBehaviour {
 	[SerializeField] MenuButton btn;
@@ -19,6 +18,8 @@ public class RoomListItem : MonoBehaviour {
 	public void SetUp(RoomInfo _info) {
 		info = _info;
         btn.text.text = _info.Name;
+
+		
 	}
 
 	public void OnClick() {

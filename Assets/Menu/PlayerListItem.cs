@@ -14,7 +14,14 @@ public class PlayerListItem : MonoBehaviourPunCallbacks
 	{
 		player = _player;
 		text.text = _player.NickName;
-	}
+
+		//MeshRenderer parent = transform.parent.GetComponent<MeshRenderer>();
+		//Vector3 position = transform.position;
+		//float height = GetComponent<MeshRenderer>().bounds.size.y;
+		//position.y = parent.bounds.max.y - height / 2 - 0.05f;
+		//position.y -= 0 * (height + 0.05f);
+		//transform.position = position;
+    }
 
 	public override void OnPlayerLeftRoom(Player otherPlayer)
 	{

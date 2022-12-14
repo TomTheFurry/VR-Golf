@@ -6,6 +6,7 @@ using TMPro;
 using System.Linq;  //import Player
 
 using Photon.Realtime;  //import RoomInfo
+using ExitGames.Client.Photon;
 
 public class Launcher : MonoBehaviourPunCallbacks {
     bool isConnected = false;
@@ -28,30 +29,38 @@ public class Launcher : MonoBehaviourPunCallbacks {
     }
 
     void Setup() {
-        if (!isConnected) {
-            //MenuManager.Instance.OpenMenu("Loading");
+        if (PhotonNetwork.IsConnectedAndReady) {
             MenuManager.Instance.OpenMenu("Multiplayer");
-
-            Debug.Log("Connecting to Master");
-            PhotonNetwork.ConnectUsingSettings();
         }
         else {
-            MenuManager.Instance.OpenMenu("Multiplayer");
+            MenuManager.Instance.OpenMenu("Loading");
+            
+            if (PhotonNetwork.NetworkingClient.LoadBalancingPeer.PeerState != PeerStateValue.Connecting) {
+                Debug.Log("Connecting to Master");
+                PhotonNetwork.ConnectUsingSettings();
+            }
         }
     }
 
-    void Start() {
-        Setup();
-    }
+    //void Start() {
+    //    Setup();
+    //}
         
 
-    private void OnEnable() {
+    public override void OnEnable() {
         Setup();
+        base.OnEnable();
+    }
+
+    public override void OnDisable() {
+        if (PhotonNetwork.NetworkingClient.LoadBalancingPeer.PeerState == PeerStateValue.Connecting)
+            PhotonNetwork.Disconnect();
     }
 
     public void GoBack() {
         MenuManager.Instance.OpenMenu("Main");
-        gameObject.SetActive(false);
+        if (!PhotonNetwork.IsConnected)
+            gameObject.SetActive(false);
     }
 
     public override void OnConnectedToMaster() {
