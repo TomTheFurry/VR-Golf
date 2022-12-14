@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 677343562}
   - component: {fileID: 677343561}
   - component: {fileID: 677343560}
+  - component: {fileID: 677343564}
   m_Layer: 5
   m_Name: PlayerList
   m_TagString: Untagged
@@ -243,6 +244,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677343558}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &677343564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677343558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a8003c941c22a41a1c4de93c89c8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 8715455543345820582, guid: d2c97b7b16b1df246aca20d1660e1680, type: 3}
 --- !u!1 &850294637
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +314,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850294637}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

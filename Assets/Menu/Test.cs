@@ -8,7 +8,14 @@ public class Test : MonoBehaviour
 
     int count = 1;
 
+    float time = 0;
+
+    
+
     private void Update() {
-        Instantiate(obj, transform).GetComponent<PlayerListItem>().Text += (count++).ToString("000");
+        if (Time.time - time > 0.1f) {
+            time = Time.time;
+            Instantiate(obj, transform).GetComponent<PlayerListItem>().Text = (count++).ToString("000");
+        }
     }
 }
