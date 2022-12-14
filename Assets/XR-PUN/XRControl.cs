@@ -9,34 +9,60 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class XRControl : MonoBehaviour
 {
     public Transform XROrigin;
-    public Transform MoveHandRef;
 
-    public InputActionReference MoveAction;
-    public InputActionReference GrabMoveAction;
-
-    public XRRayInteractor Interactor;
+    public ActionBasedController LeftHand;
+    public XRRayInteractor LeftHandInteractor;
+    public InputActionReference LeftHandMove;
+    public ActionBasedController RightHand;
+    public XRRayInteractor RightHandInteractor;
+    public InputActionReference RightHandMove;
 
     public float moveSpeed = 10f;
+    public Vector2 grabMoveSpeed = new(1, 0.1f);
+    public Vector2 zRange = new(-0.2f, 1f);
 
-    void Update()
-    {
-        var relMove = MoveAction.action.ReadValue<Vector2>();
-        Debug.Log($"Move {relMove}");
-        var yawRot = Quaternion.Euler(0, MoveHandRef.eulerAngles.y, 0);
-        var moveDir = yawRot * new Vector3(relMove.x, 0, relMove.y);
-        var move = Vector3.Normalize(moveDir) * moveSpeed;
-        XROrigin.position += move * Time.deltaTime;
+    private void UpdateGrabTransform(Vector2 input, Transform target) {
+        Vector3 anchorOffset = target.localPosition;
+        Vector3 euler = target.localEulerAngles;
+        anchorOffset.z += input.y;
+        anchorOffset.z = Math.Clamp(anchorOffset.z, zRange.x, zRange.y);
+        euler.z += input.x;
+        target.localPosition = anchorOffset;
+        target.localEulerAngles = euler;
+    }
 
-        var list = Interactor.interactablesSelected;
-        if (list.Count != 0 && list[0] is XRGrabInteractable grabbed) {
-            Vector3 anchorOffset = grabbed.attachTransform.localPosition;
-            Vector3 euler = grabbed.attachTransform.localEulerAngles;
-            
-            var grabMove = GrabMoveAction.action.ReadValue<Vector2>();
-            anchorOffset.z += grabMove.y * Time.deltaTime;
-            euler.z += grabMove.x * Time.deltaTime;
-            grabbed.attachTransform.localPosition = anchorOffset;
-            grabbed.attachTransform.localEulerAngles = euler;
+    void FixedUpdate() {
+        var moveDir = Vector3.zero;
+        float divider = 0;
+
+        {
+            var leftSelected = LeftHandInteractor.interactablesSelected;
+            var leftMove = LeftHandMove.action.ReadValue<Vector2>();
+            if (leftSelected.Count != 0 && leftSelected[0] is XRGrabInteractable grabbed) {
+                UpdateGrabTransform(leftMove * grabMoveSpeed, grabbed.attachTransform);
+            }
+            else {
+                var yawRot = Quaternion.Euler(0, LeftHand.transform.eulerAngles.y, 0);
+                moveDir += yawRot * new Vector3(leftMove.x, 0, leftMove.y);
+                divider++;
+            }
         }
+
+        {
+            var rightSelected = RightHandInteractor.interactablesSelected;
+            var rightMove = RightHandMove.action.ReadValue<Vector2>();
+            if (rightSelected.Count != 0 && rightSelected[0] is XRGrabInteractable grabbed) {
+                UpdateGrabTransform(rightMove * grabMoveSpeed, grabbed.attachTransform);
+            }
+            else {
+                var yawRot = Quaternion.Euler(0, RightHand.transform.eulerAngles.y, 0);
+                moveDir += yawRot * new Vector3(rightMove.x, 0, rightMove.y);
+                divider++;
+            }
+        }
+        if (divider == 0) return;
+
+        var move = moveDir / divider * moveSpeed;
+        XROrigin.position += move * Time.fixedDeltaTime;
     }
 }

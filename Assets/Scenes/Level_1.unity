@@ -382,6 +382,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2977981768884665668, guid: 7b8e4016ee1d188409a711fe67cc32b6, type: 3}
+--- !u!1 &291581567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 291581568}
+  m_Layer: 3
+  m_Name: GrabPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &291581568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291581567}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1255308729}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &560870975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6204602899501732238, guid: f6970021937797c40b8990f50aa0267b, type: 3}
@@ -1114,10 +1145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1041584328}
-  rotationP: 0.02
-  rotationD: 0.2
-  positionP: 5
-  positionD: 0.2
+  rotationP: 0.4
+  rotationD: 0.4
+  positionP: 8
+  positionD: 0.5
 --- !u!114 &1022812096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,7 +1395,7 @@ MonoBehaviour:
   m_HapticHoverCancelDuration: 0
   m_LineType: 0
   m_BlendVisualLinePoints: 1
-  m_MaxRaycastDistance: 30
+  m_MaxRaycastDistance: 200
   m_RayOriginTransform: {fileID: 1041584327}
   m_ReferenceFrame: {fileID: 0}
   m_Velocity: 16
@@ -2107,9 +2138,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   XROrigin: {fileID: 1303261899}
-  MoveHandRef: {fileID: 1041584327}
-  MoveAction: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  LeftHand: {fileID: 1022812096}
+  LeftHandInteractor: {fileID: 1022812097}
+  LeftHandMove: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  RightHand: {fileID: 1445599708}
+  RightHandInteractor: {fileID: 1445599709}
+  RightHandMove: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   moveSpeed: 20
+  grabMoveSpeed: {x: 2, y: -0.1}
+  zRange: {x: -1.5, y: 5}
 --- !u!114 &1303261903 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6204602899018475820, guid: f6970021937797c40b8990f50aa0267b, type: 3}
@@ -2197,6 +2234,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6204602900109080337, guid: f6970021937797c40b8990f50aa0267b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.197
+      objectReference: {fileID: 0}
     - target: {fileID: 6204602900109080366, guid: f6970021937797c40b8990f50aa0267b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2227,6 +2268,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6204602900244220612, guid: f6970021937797c40b8990f50aa0267b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 203453242}
+    - targetCorrespondingSourceObject: {fileID: 6204602900109080337, guid: f6970021937797c40b8990f50aa0267b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 291581568}
   m_SourcePrefab: {fileID: 100100000, guid: f6970021937797c40b8990f50aa0267b, type: 3}
 --- !u!1 &1445599702
 GameObject:
@@ -2277,10 +2321,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1255308724}
-  rotationP: 0.02
-  rotationD: 0.2
-  positionP: 5
-  positionD: 0.2
+  rotationP: 0.4
+  rotationD: 0.4
+  positionP: 8
+  positionD: 0.5
 --- !u!114 &1445599708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2459,13 +2503,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
+  m_InteractionManager: {fileID: 1303261903}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
     m_Bits: 4294967295
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 291581568}
   m_KeepSelectedTargetValid: 1
   m_StartingSelectedInteractable: {fileID: 0}
   m_HoverEntered:
@@ -2549,7 +2593,7 @@ MonoBehaviour:
   m_HoverToSelect: 0
   m_HoverTimeToSelect: 0.5
   m_EnableUIInteraction: 1
-  m_AllowAnchorControl: 1
+  m_AllowAnchorControl: 0
   m_UseForceGrab: 1
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
