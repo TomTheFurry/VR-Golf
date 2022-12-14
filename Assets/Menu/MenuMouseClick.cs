@@ -6,13 +6,19 @@ using UnityEngine.UI;
 
 public class MenuMouseClick : MonoBehaviour {
     public static Camera usingCam;
+
+    [SerializeField] Camera cam;
     public static GameObject hitObj { get; private set; }
     public Transform rightHand;
     public InputActionReference rightHandInput;
 
+    private void Awake() {
+        if (cam != null)
+            usingCam = cam;
+    }
     void Update() {
         Ray ray = usingCam.ScreenPointToRay(Input.mousePosition);
-        if (XRManager.HasXRDevices)
+        if (XRManager.HasXRDevices && rightHand != null)
             ray = new Ray(rightHand.position, rightHand.forward);
 
         RaycastHit hit;
@@ -39,6 +45,6 @@ public class MenuMouseClick : MonoBehaviour {
     }
 
     bool isInput() {
-        return Input.GetMouseButtonDown(0) || rightHandInput.action.triggered;
+        return Input.GetMouseButtonDown(0) || rightHandInput != null && rightHandInput.action.triggered;
     }
 }
