@@ -54,7 +54,7 @@ public class InGameUi : MonoBehaviourPun {
         Playfield.OnPlayfieldComplete -= OnPlayfieldComplete;
     }
 
-    public bool isUiOpen => ui.gameObject.activeInHierarchy && clearUi.gameObject.activeInHierarchy;
+    public bool isUiOpen => ui.gameObject.activeInHierarchy || clearUi.gameObject.activeInHierarchy;
 
     public void openUi() {
         ui.eulerAngles = new Vector3(0, player.eulerAngles.y, 0);
