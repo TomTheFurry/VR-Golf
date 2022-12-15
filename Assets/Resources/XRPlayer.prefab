@@ -1943,6 +1943,22 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 8660365751983611017}
     m_Modifications:
+    - target: {fileID: 55293134811072431, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3329534182073426345}
+    - target: {fileID: 55293134811072431, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 55293134811072431, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 8660365750893527731}
+    - target: {fileID: 55293134811072431, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+      propertyPath: rightHandInput
+      value: 
+      objectReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 146234225057597967, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
       propertyPath: m_Name
       value: UserInterfaceManager
@@ -1951,6 +1967,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 3329534182073426345}
+    - target: {fileID: 3923663823437399768, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3923663823437399768, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
       propertyPath: rightHand
       value: 
@@ -1963,6 +1983,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 3329534182073426345}
+    - target: {fileID: 5224082689276337179, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5224082689276337179, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
       propertyPath: rightHand
       value: 
@@ -2023,7 +2047,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5224082689276337179, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+    - {fileID: 3923663823437399768, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
 --- !u!4 &1049807401673114683 stripped

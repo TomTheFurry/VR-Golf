@@ -17,6 +17,8 @@ public class InGameUi : MonoBehaviourPun {
 
     [SerializeField] InputActionReference XRInput;
 
+    public MenuMouseClick click;
+
     private void Start() {
         MenuMouseClick menu = ui.GetComponent<MenuMouseClick>();
         if (menu.cam == null) {
@@ -40,6 +42,7 @@ public class InGameUi : MonoBehaviourPun {
     }
 
     private void Update() {
+        click.enabled = isUiOpen;
         if (!isUiOpen && (Input.GetKeyDown(KeyCode.E) || XRInput.action.triggered)) {
             openUi();
         }
