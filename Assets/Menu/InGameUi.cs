@@ -8,7 +8,6 @@ using TMPro;
 using System;
 
 public class InGameUi : MonoBehaviourPun {
-    static List<InGameUi> instances = new List<InGameUi>();
 
     [SerializeField] Transform player;
     [SerializeField] Transform ui;
@@ -17,17 +16,6 @@ public class InGameUi : MonoBehaviourPun {
     [SerializeField] TextMeshPro clearTime;
 
     [SerializeField] InputActionReference XRInput;
-
-
-    private void OnEnable() {
-        if (!instances.Contains(this))
-            instances.Add(this);
-    }
-
-    private void OnDisable() {
-        if (instances.Contains(this))
-            instances.Remove(this);
-    }
 
     private void Start() {
         MenuMouseClick menu = ui.GetComponent<MenuMouseClick>();
@@ -43,12 +31,12 @@ public class InGameUi : MonoBehaviourPun {
     }
 
     private void OnPlayfieldComplete(Playfield obj) {
-        closeAllUi();
+        closeUi();
         openClearUi();
     }
 
     private void OnPlayfieldChange(Playfield obj) {
-        closeAllUi();
+        closeUi();
     }
 
     private void Update() {
@@ -59,6 +47,7 @@ public class InGameUi : MonoBehaviourPun {
 
     private void OnDestroy() {
         Playfield.OnPlayfieldEnter -= OnPlayfieldChange;
+        Playfield.OnPlayfieldComplete -= OnPlayfieldComplete;
     }
 
     public bool isUiOpen => ui.gameObject.activeInHierarchy && clearUi.gameObject.activeInHierarchy;
@@ -81,12 +70,6 @@ public class InGameUi : MonoBehaviourPun {
     public void closeUi() {
         ui.gameObject.SetActive(false);
         clearUi.gameObject.SetActive(false);
-    }
-    
-    public static void closeAllUi() {
-        foreach (InGameUi instance in instances) {
-            instance.closeUi();
-        }
     }
 
     public void goToTitle() {
