@@ -1724,7 +1724,7 @@ MonoBehaviour:
   Cam: {fileID: 8660365752295171117}
   moveSpeed: 20
   grabMoveSpeed: {x: 2, y: -0.1}
-  zRange: {x: -1.5, y: 5}
+  zRange: {x: -5, y: 10}
 --- !u!114 &6204602899844246669
 MonoBehaviour:
   m_ObjectHideFlags: 0

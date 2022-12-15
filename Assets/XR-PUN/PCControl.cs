@@ -40,7 +40,7 @@ public class PCControl : MonoBehaviour
         if (grabbedObject != null && RaiseLowerGrabAction.action.ReadValue<float>() != 0f) {
             var loc = grabSource.localPosition;
             loc.y -= RaiseLowerGrabAction.action.ReadValue<float>() / 5000f;
-            loc.y = Math.Clamp(loc.y, 0.2f, 1.0f);
+            loc.y = Math.Clamp(loc.y, -0.5f, 2f);
             grabSource.localPosition = loc;
         }
 
