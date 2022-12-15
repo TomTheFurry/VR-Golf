@@ -5,33 +5,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class InGameUi : MonoBehaviourPun {
     static List<InGameUi> instances = new List<InGameUi>();
-    public bool isClear = false;
 
     [SerializeField] Transform player;
     [SerializeField] Transform ui;
     [SerializeField] Transform clearUi;
+    [SerializeField] Transform clearUiMasterOnly;
     [SerializeField] TextMeshPro clearTime;
 
     [SerializeField] InputActionReference XRInput;
 
-    bool isLocal;
-
-    private void Awake() {
-        isLocal = photonView.IsMine || !PhotonNetwork.IsConnected;
-        closeUi();
-
-        if (!isLocal) {
-            enabled = false;
-        }
-    }
 
     private void OnEnable() {
         if (!instances.Contains(this))
             instances.Add(this);
     }
+
     private void OnDisable() {
         if (instances.Contains(this))
             instances.Remove(this);
@@ -46,34 +38,51 @@ public class InGameUi : MonoBehaviourPun {
                 menu.Awake();
             }
         }
+        Playfield.OnPlayfieldEnter += OnPlayfieldChange;
+        Playfield.OnPlayfieldComplete += OnPlayfieldComplete;
+    }
+
+    private void OnPlayfieldComplete(Playfield obj) {
+        closeAllUi();
+        openClearUi();
+    }
+
+    private void OnPlayfieldChange(Playfield obj) {
+        closeAllUi();
     }
 
     private void Update() {
-        if (isClear) {
-            if (!isUiOpen)
-                openClearUi();
-        }
-        else if (Input.GetKeyDown(KeyCode.E) || XRInput.action.triggered) {
+        if (!isUiOpen && (Input.GetKeyDown(KeyCode.E) || XRInput.action.triggered)) {
             openUi();
         }
+    }
 
+    private void OnDestroy() {
+        Playfield.OnPlayfieldEnter -= OnPlayfieldChange;
     }
 
     public bool isUiOpen => ui.gameObject.activeInHierarchy && clearUi.gameObject.activeInHierarchy;
 
     public void openUi() {
-        ui.rotation = player.rotation;
+        ui.eulerAngles = new Vector3(0, player.eulerAngles.y, 0);
+        clearUi.eulerAngles = new Vector3(0, player.eulerAngles.y, 0);
         ui.gameObject.SetActive(true);
     }
+    
     public void openClearUi() {
-        // ** set time
+        float time = Playfield.ActivePlayfield.PlayTime;
+        clearTime.text = string.Format("{0:00}:{1:00}", time / 60, time % 60);
+        ui.eulerAngles = new Vector3(0, player.eulerAngles.y, 0);
+        clearUi.eulerAngles = new Vector3(0, player.eulerAngles.y, 0);
         clearUi.gameObject.SetActive(true);
+        if (PhotonNetwork.InRoom && !PhotonNetwork.IsMasterClient) clearUiMasterOnly.gameObject.SetActive(false);
     }
 
     public void closeUi() {
         ui.gameObject.SetActive(false);
         clearUi.gameObject.SetActive(false);
     }
+    
     public static void closeAllUi() {
         foreach (InGameUi instance in instances) {
             instance.closeUi();
@@ -81,19 +90,15 @@ public class InGameUi : MonoBehaviourPun {
     }
 
     public void goToTitle() {
-
         if (PhotonNetwork.IsConnected) {
             PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
             PhotonNetwork.LeaveRoom();
-            PhotonNetwork.LoadLevel(0);
         }
-        else {
-            SceneManager.LoadScene("Title");
-        }
+        SceneManager.LoadScene(0);
     }
 
     public void nextLevel() {
-        isClear = false;
-        closeAllUi();
+        Debug.Assert(PhotonNetwork.IsMasterClient || !PhotonNetwork.InRoom);
+        Playfield.ActivePlayfield.AdvanceNextLevel();
     }
 }

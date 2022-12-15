@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class Ball : MonoBehaviour, IPlayfieldTracked
         if (other.gameObject.layer == LayerMask.NameToLayer("Goal")) {
             Debug.Log("Ball - Goal");
             ResetBall(activePlayfield?.SpawnPoint.position ?? lastStablePos);
+            if (PhotonNetwork.IsMasterClient || !PhotonNetwork.InRoom)
+                activePlayfield?.LevelCleared();
         }
     }
 

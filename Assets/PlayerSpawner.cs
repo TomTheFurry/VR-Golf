@@ -11,7 +11,7 @@ public class PlayerSpawner : MonoBehaviour {
 
     void Start() {
         if (PhotonNetwork.InLobby || !PhotonNetwork.IsConnected) {
-            Instantiate(Resources.Load<GameObject>(XRManager.HasXRDevices ? XRPlayerPrefabName : PCPlayerPrefabName), Vector3.zero, Quaternion.identity);
+            PhotonNetwork.LocalPlayer.TagObject = Instantiate(Resources.Load<GameObject>(XRManager.HasXRDevices ? XRPlayerPrefabName : PCPlayerPrefabName), Vector3.zero, Quaternion.identity);
         }
         else {
             PhotonNetwork.LocalPlayer.TagObject = PhotonNetwork.Instantiate(XRManager.HasXRDevices ? XRPlayerPrefabName : PCPlayerPrefabName, Vector3.zero, Quaternion.identity);
