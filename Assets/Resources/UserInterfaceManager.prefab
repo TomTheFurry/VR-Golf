@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8446258521537469765}
   - component: {fileID: 6180261012640734504}
   - component: {fileID: 5432177968818898114}
+  - component: {fileID: 55293134811072431}
   m_Layer: 5
   m_Name: UserInterfaceManager
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146234225057597967}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -80,6 +81,21 @@ MonoBehaviour:
   clearUiMasterOnly: {fileID: 2157494547548201577}
   clearTime: {fileID: 8978569763244241661}
   XRInput: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &55293134811072431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146234225057597967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7d12903d1560c4581720c9511d13b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  rightHand: {fileID: 0}
+  rightHandInput: {fileID: 0}
 --- !u!1 &966394902754423749
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +802,6 @@ GameObject:
   - component: {fileID: 3689048196399602005}
   - component: {fileID: 4617641352301856628}
   - component: {fileID: 8164268841176533644}
-  - component: {fileID: 5224082689276337179}
   m_Layer: 5
   m_Name: InGameClearInterface
   m_TagString: Untagged
@@ -879,21 +894,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5224082689276337179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367659118294869607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b7d12903d1560c4581720c9511d13b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  rightHand: {fileID: 0}
-  rightHandInput: {fileID: 0}
 --- !u!1 &3961673631021306804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,7 +1154,6 @@ GameObject:
   - component: {fileID: 5565935910101271446}
   - component: {fileID: 4474648018633072055}
   - component: {fileID: 1099234221014306895}
-  - component: {fileID: 3923663823437399768}
   m_Layer: 5
   m_Name: InGameUserInterface
   m_TagString: Untagged
@@ -1246,21 +1245,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3923663823437399768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5814244779697831076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b7d12903d1560c4581720c9511d13b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  rightHand: {fileID: 0}
-  rightHandInput: {fileID: 0}
 --- !u!1 &7204907480908451322
 GameObject:
   m_ObjectHideFlags: 0
