@@ -113,7 +113,7 @@ public class Playfield : MonoBehaviourPun
         }
         else {
             int scenelevel = SceneManagerHelper.ActiveSceneBuildIndex;
-            if (scenelevel < SceneManager.sceneCount - 1) {
+            if (scenelevel < SceneManager.sceneCountInBuildSettings - 1) {
                 if (!PhotonNetwork.InRoom) SceneManager.LoadScene(scenelevel + 1);
                 else PhotonNetwork.LoadLevel(scenelevel + 1);
             }
