@@ -81,6 +81,7 @@ MonoBehaviour:
   clearUiMasterOnly: {fileID: 2157494547548201577}
   clearTime: {fileID: 8978569763244241661}
   XRInput: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  click: {fileID: 55293134811072431}
 --- !u!114 &55293134811072431
 MonoBehaviour:
   m_ObjectHideFlags: 0

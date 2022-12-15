@@ -20,7 +20,7 @@ public class InGameUi : MonoBehaviourPun {
     public MenuMouseClick click;
 
     private void Start() {
-        MenuMouseClick menu = ui.GetComponent<MenuMouseClick>();
+        MenuMouseClick menu = click;
         if (menu.cam == null) {
             Camera[] cams = player.GetComponentsInChildren<Camera>();
             if (cams.Length > 0) {

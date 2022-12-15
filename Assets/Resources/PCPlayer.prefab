@@ -405,6 +405,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 117377411575509303}
     m_Modifications:
+    - target: {fileID: 55293134811072431, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 117377411799913644}
     - target: {fileID: 146234225057597967, guid: ed955a249e9a7854a875b34f71656b8f, type: 3}
       propertyPath: m_Name
       value: UserInterfaceManager

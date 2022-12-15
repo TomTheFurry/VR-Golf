@@ -15,7 +15,8 @@ public class MenuMouseClick : MonoBehaviour {
     public void Awake() {
         if (cam != null) {
             usingCam = cam;
-            GetComponent<Canvas>().worldCamera = usingCam;
+            var v = GetComponentsInChildren<Canvas>();
+            foreach (var c in v) c.worldCamera = usingCam;
         }
     }
 
@@ -27,7 +28,7 @@ public class MenuMouseClick : MonoBehaviour {
         RaycastHit hit;
         hitObj = null;
 
-        bool isHit = Physics.Raycast(ray, out hit, 100);
+        bool isHit = Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("UI"));
         if (isHit && hit.transform.tag == "MenuButton") {
             MenuButton menuButton = hit.transform.GetComponent<MenuButton>();
             if (menuButton != null) {
