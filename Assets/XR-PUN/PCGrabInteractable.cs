@@ -51,14 +51,14 @@ public class PCGrabInteractable : MonoBehaviourPun {
     }
 
     [PunRPC]
-    public void NotifyChangeOwner(Player player, bool isReleasing) {
+    public void NotifyChangeOwner(Photon.Realtime.Player player, bool isReleasing) {
         if (isReleasing) {
             ownerID = -1;
             return;
         }
         ownerID = player.ActorNumber;
         
-        if (player.TagObject != null) OnGrabbed.Invoke((player.TagObject as GameObject).transform);
+        if (player.TagObject != null) OnGrabbed.Invoke((player.TagObject as GameObject).GetComponent<Control>().PlayerTransform);
         
         if (player.IsLocal) {
             if (TriedGrabber != null) {

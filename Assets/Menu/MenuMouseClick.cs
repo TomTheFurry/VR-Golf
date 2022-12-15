@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MenuMouseClick : MonoBehaviour {
-    public static Camera usingCam;
-
     public Camera cam;
     public static GameObject hitObj { get; private set; }
     public Transform rightHand;
@@ -14,14 +12,13 @@ public class MenuMouseClick : MonoBehaviour {
 
     public void Awake() {
         if (cam != null) {
-            usingCam = cam;
             var v = GetComponentsInChildren<Canvas>();
-            foreach (var c in v) c.worldCamera = usingCam;
+            foreach (var c in v) c.worldCamera = cam;
         }
     }
 
     void Update() {
-        Ray ray = usingCam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (XRManager.HasXRDevices && rightHand != null)
             ray = new Ray(rightHand.position, rightHand.forward);
 

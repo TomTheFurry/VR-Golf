@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 
+[RequireComponent(typeof(Control))]
 public class XRControl : MonoBehaviour
 {
     public Transform XROrigin;

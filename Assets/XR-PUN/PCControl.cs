@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Control))]
 public class PCControl : MonoBehaviour
 {
     public Rigidbody target;

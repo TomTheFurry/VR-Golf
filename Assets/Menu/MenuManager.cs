@@ -42,8 +42,7 @@ public class MenuManager : MonoBehaviour {
         Cam = PCCam;
         if (XRManager.HasXRDevices)
             Cam = XRCam;
-
-        MenuMouseClick.usingCam = Cam;
+        FindObjectOfType<MenuMouseClick>().cam = Cam;
 
         OpenMenu(usingMenu);
     }

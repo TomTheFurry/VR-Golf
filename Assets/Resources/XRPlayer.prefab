@@ -1580,6 +1580,7 @@ GameObject:
   - component: {fileID: 3329534182573212356}
   - component: {fileID: 3329534182573212357}
   - component: {fileID: 6204602899844246669}
+  - component: {fileID: 4612152898078883710}
   m_Layer: 3
   m_Name: XRPlayer
   m_TagString: Untagged
@@ -1737,6 +1738,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2553ccc55f1e1284c958891ea7d25cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4612152898078883710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8660365751983611020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7684a9ef4496d9d4697566ed572733b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerTransform: {fileID: 8660365752295171117}
 --- !u!1 &8660365752295171116
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public interface IPlayfieldTracked {
     void OnExitPlayfield(Playfield f);
 }
 
+[RequireComponent(typeof(PhotonView))]
 public class Playfield : MonoBehaviourPun
 {
     public static int LevelToStartOnSceneLoad = 1; // Master client only

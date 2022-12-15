@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour, IPlayfieldTracked
+public class Ball : MonoBehaviourPun, IPlayfieldTracked
 {
     Rigidbody rig;
     Vector3 lastStablePos;
@@ -31,7 +31,7 @@ public class Ball : MonoBehaviour, IPlayfieldTracked
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Goal")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Goal") && (photonView.IsMine || !PhotonNetwork.InRoom)) {
             Debug.Log("Ball - Goal");
             ResetBall(activePlayfield?.SpawnPoint.position ?? lastStablePos);
             if (PhotonNetwork.IsMasterClient || !PhotonNetwork.InRoom)
@@ -44,7 +44,7 @@ public class Ball : MonoBehaviour, IPlayfieldTracked
     }
 
     public void OnExitPlayfield(Playfield f) {
-        if (activePlayfield != null && activePlayfield == f) {
+        if (activePlayfield != null && activePlayfield == f && (photonView.IsMine || !PhotonNetwork.InRoom)) {
             Debug.Log("Ball - Outside playfield! RESET!");
             ResetBall(lastStablePos);
         }

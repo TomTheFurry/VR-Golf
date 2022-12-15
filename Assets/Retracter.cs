@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Retracter : MonoBehaviour
+public class Retracter : MonoBehaviourPun
 {
     public Transform LastOwner = null;
     public float MaxRange;
@@ -29,7 +29,7 @@ public class Retracter : MonoBehaviour
     void FixedUpdate()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
-        if (LastOwner != null && Vector3.Distance(rb.position, LastOwner.position) > MaxRange) {
+        if (photonView.IsMine && LastOwner != null && Vector3.Distance(rb.position, LastOwner.position) > MaxRange) {
             Debug.Log("Club Resetted.");
             rb.position = LastOwner.position + Vector3.up;
             rb.rotation = Quaternion.identity;
