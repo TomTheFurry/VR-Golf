@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b5cfd924299e94a98b113827189c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClear: 0
   player: {fileID: 0}
   ui: {fileID: 6247176118758918042}
   clearUi: {fileID: 2935891101203111257}
@@ -97,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 1330520088926576957}
     - target: {fileID: 2488846797815479794, guid: c55a44cdf8177e64c8ac9f052419db7c, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: colseUi
+      value: closeUi
       objectReference: {fileID: 0}
     - target: {fileID: 5485246754807559838, guid: c55a44cdf8177e64c8ac9f052419db7c, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -241,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488846797815479794, guid: 2b6eb7c5105c9aa4d9926b91534bf6f5, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: colseUi
+      value: closeUi
       objectReference: {fileID: 0}
     - target: {fileID: 2488846797815479794, guid: 2b6eb7c5105c9aa4d9926b91534bf6f5, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -354,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 5679234496901162817, guid: 2b6eb7c5105c9aa4d9926b91534bf6f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182828086532528275, guid: 2b6eb7c5105c9aa4d9926b91534bf6f5, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

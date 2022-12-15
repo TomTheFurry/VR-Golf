@@ -31,7 +31,7 @@ public class MenuMouseClick : MonoBehaviour {
         if (isHit && hit.transform.tag == "MenuButton") {
             MenuButton menuButton = hit.transform.GetComponent<MenuButton>();
             if (menuButton != null) {
-                Debug.Log(string.Format("Click: {0}", menuButton.text.text));
+                //Debug.Log(string.Format("Click: {0}", menuButton.text.text));
                 if (isInput())
                     menuButton.triggerEvent.Invoke();
                 hitObj = hit.transform.gameObject;

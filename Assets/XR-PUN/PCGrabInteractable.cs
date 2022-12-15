@@ -103,7 +103,7 @@ public class PCGrabInteractable : MonoBehaviourPun {
             return;
         }
         CurrentLocalGrabber = null;
-        if (PhotonNetwork.InLobby) {
+        if (!PhotonNetwork.InRoom) {
             Debug.Log("Release object noted, and no sync needed because we are in lobby");
             return;
         }
