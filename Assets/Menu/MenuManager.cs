@@ -119,10 +119,10 @@ public class MenuManager : MonoBehaviour {
     }
 
 
-    public void startEvent() {
+    public void startEvent(string level) {
         stopRotate();
         //cam.transform.position = startPos.position;
         //cam.transform.rotation = startPos.rotation;
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene(level);
     }
 }
