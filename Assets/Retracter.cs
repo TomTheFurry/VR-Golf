@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,15 @@ public class Retracter : MonoBehaviour
 {
     public Transform LastOwner = null;
     public float MaxRange;
+
+    public void Start() {
+        if (PhotonNetwork.InRoom) {
+            LastOwner ??= (PhotonNetwork.MasterClient.TagObject as GameObject).transform;
+        }
+        else {
+            LastOwner ??= (PhotonNetwork.LocalPlayer.TagObject as GameObject).transform;
+        }
+    }
 
     // By XR
     public void OnSelectEntered(SelectEnterEventArgs args) {
