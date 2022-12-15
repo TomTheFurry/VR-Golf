@@ -65,4 +65,10 @@ public class XRControl : MonoBehaviour
         var move = moveDir / divider * moveSpeed;
         XROrigin.position += move * Time.fixedDeltaTime;
     }
+
+    public void Teleport(Vector3 pos) {
+        XROrigin.position = pos;
+    }
+    
+    public Transform GetTransform() => XROrigin;
 }

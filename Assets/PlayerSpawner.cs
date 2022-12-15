@@ -8,13 +8,17 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour {
     public string XRPlayerPrefabName;
     public string PCPlayerPrefabName;
+    public GameObject LocalObj;
 
     void Start() {
         if (PhotonNetwork.InLobby || !PhotonNetwork.IsConnected) {
-            PhotonNetwork.LocalPlayer.TagObject = Instantiate(Resources.Load<GameObject>(XRManager.HasXRDevices ? XRPlayerPrefabName : PCPlayerPrefabName), Vector3.zero, Quaternion.identity);
+            LocalObj = Instantiate(Resources.Load<GameObject>(XRManager.HasXRDevices ? XRPlayerPrefabName : PCPlayerPrefabName), Vector3.zero, Quaternion.identity);
+            if (PhotonNetwork.LocalPlayer != null)
+                PhotonNetwork.LocalPlayer.TagObject = LocalObj;
         }
         else {
-            PhotonNetwork.LocalPlayer.TagObject = PhotonNetwork.Instantiate(XRManager.HasXRDevices ? XRPlayerPrefabName : PCPlayerPrefabName, Vector3.zero, Quaternion.identity);
+            LocalObj = PhotonNetwork.Instantiate(XRManager.HasXRDevices ? XRPlayerPrefabName : PCPlayerPrefabName, Vector3.zero, Quaternion.identity);
+            PhotonNetwork.LocalPlayer.TagObject = LocalObj;
         }
     }
 }

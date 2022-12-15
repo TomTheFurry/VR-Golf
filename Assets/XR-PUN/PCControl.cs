@@ -89,4 +89,10 @@ public class PCControl : MonoBehaviour
             grabSource.Rotate(Vector3.forward, 180, Space.Self);
         }
     }
+
+    public void Teleport(Vector3 pos) {
+        target.transform.position = pos;
+    }
+
+    public Transform GetTransform() => target.transform;
 }

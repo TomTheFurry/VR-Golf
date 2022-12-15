@@ -41,7 +41,8 @@ public class InGameUi : MonoBehaviourPun {
 
     private void Update() {
         if (!isUiOpen && (Input.GetKeyDown(KeyCode.E) || XRInput.action.triggered)) {
-            openUi();
+            if (Playfield.ActivePlayfield.IsCleared) openClearUi();
+            else openUi();
         }
     }
 

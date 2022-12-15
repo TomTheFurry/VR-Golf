@@ -36,7 +36,7 @@ public class Playfield : MonoBehaviourPun
             if (PhotonNetwork.IsMasterClient && levelNumber == LevelToStartOnSceneLoad) {
                 photonView.RPC("StartLevel", RpcTarget.AllBuffered, Time.time);
             }
-            else if (!PhotonNetwork.InRoom) {
+            else if (!PhotonNetwork.InRoom && levelNumber == LevelToStartOnSceneLoad) {
                 StartLevel(Time.time);
             }
         }
@@ -52,8 +52,14 @@ public class Playfield : MonoBehaviourPun
         StartTime = time;
         Ball.activePlayfield = this;
         Ball.ResetBall(SpawnPoint.position);
-        (PhotonNetwork.LocalPlayer.TagObject as GameObject).transform.position = PlayerSpawnPoint.position;
-        (PhotonNetwork.LocalPlayer.TagObject as GameObject).transform.rotation = PlayerSpawnPoint.rotation;
+        if (XRManager.HasXRDevices) {
+            XRControl ctrl = FindObjectOfType<PlayerSpawner>().LocalObj.GetComponent<XRControl>();
+            ctrl.Teleport(PlayerSpawnPoint.position);
+        }
+        else {
+            PCControl ctrl = FindObjectOfType<PlayerSpawner>().LocalObj.GetComponent<PCControl>();
+            ctrl.Teleport(PlayerSpawnPoint.position);
+        }
         OnPlayfieldEnter?.Invoke(this);
     }
 

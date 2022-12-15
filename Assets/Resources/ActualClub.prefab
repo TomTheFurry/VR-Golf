@@ -169,7 +169,7 @@ Transform:
   - {fileID: 6785276343002924325}
   - {fileID: 2010649635155399443}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2010649635230762361
 MonoBehaviour:
@@ -276,12 +276,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 2010649634303806705}
+  - {fileID: 2010649634415337757}
+  - {fileID: 2010649634574900156}
+  - {fileID: 2010649634512919502}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 4294967295
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -403,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LastOwner: {fileID: 0}
-  MaxRange: 1000
+  MaxRange: 100
 --- !u!1 &7541799326567683118
 GameObject:
   m_ObjectHideFlags: 0

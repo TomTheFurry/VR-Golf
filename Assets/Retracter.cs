@@ -9,12 +9,10 @@ public class Retracter : MonoBehaviour
     public Transform LastOwner = null;
     public float MaxRange;
 
-    public void Start() {
-        if (PhotonNetwork.InRoom) {
-            LastOwner ??= (PhotonNetwork.MasterClient.TagObject as GameObject).transform;
-        }
-        else {
-            LastOwner ??= (PhotonNetwork.LocalPlayer.TagObject as GameObject).transform;
+    public void Update() {
+        if (LastOwner == null) {
+            var obj = FindObjectOfType<PlayerSpawner>().LocalObj;
+            LastOwner = (XRManager.HasXRDevices ? obj.GetComponent<XRControl>().GetTransform() : obj.GetComponent<PCControl>().GetTransform());
         }
     }
 
