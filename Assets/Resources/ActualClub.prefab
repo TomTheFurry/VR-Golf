@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LastOwner: {fileID: 0}
-  MaxRange: 100
+  MaxRange: 10
 --- !u!1 &7541799326567683118
 GameObject:
   m_ObjectHideFlags: 0

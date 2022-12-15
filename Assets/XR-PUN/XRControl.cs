@@ -16,6 +16,7 @@ public class XRControl : MonoBehaviour
     public ActionBasedController RightHand;
     public XRRayInteractor RightHandInteractor;
     public InputActionReference RightHandMove;
+    public Transform Cam;
 
     public float moveSpeed = 10f;
     public Vector2 grabMoveSpeed = new(1, 0.1f);
@@ -70,5 +71,5 @@ public class XRControl : MonoBehaviour
         XROrigin.position = pos;
     }
     
-    public Transform GetTransform() => XROrigin;
+    public Transform GetTransform() => Cam;
 }

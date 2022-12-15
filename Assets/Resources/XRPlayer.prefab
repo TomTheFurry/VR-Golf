@@ -1721,6 +1721,7 @@ MonoBehaviour:
   RightHand: {fileID: 3329534182648457684}
   RightHandInteractor: {fileID: 3329534182648457685}
   RightHandMove: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  Cam: {fileID: 8660365752295171117}
   moveSpeed: 20
   grabMoveSpeed: {x: 2, y: -0.1}
   zRange: {x: -1.5, y: 5}
