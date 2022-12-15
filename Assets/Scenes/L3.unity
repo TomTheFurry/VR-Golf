@@ -514,6 +514,10 @@ PrefabInstance:
       propertyPath: NextLevel
       value: 
       objectReference: {fileID: 1258709969}
+    - target: {fileID: 117186241572913017, guid: 9c270ea9ed1366741b9ef3e4b4a0fd11, type: 3}
+      propertyPath: levelNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117186241572913019, guid: 9c270ea9ed1366741b9ef3e4b4a0fd11, type: 3}
       propertyPath: m_Name
       value: Playfield2
@@ -1898,6 +1902,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117186241572913017, guid: 9c270ea9ed1366741b9ef3e4b4a0fd11, type: 3}
+      propertyPath: levelNumber
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 117186241572913019, guid: 9c270ea9ed1366741b9ef3e4b4a0fd11, type: 3}
       propertyPath: m_Name
       value: Playfield3
@@ -2908,6 +2916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XRPlayerPrefabName: XRPlayer
   PCPlayerPrefabName: PCPlayer
+  LocalObj: {fileID: 0}
 --- !u!4 &2075295622
 Transform:
   m_ObjectHideFlags: 0
