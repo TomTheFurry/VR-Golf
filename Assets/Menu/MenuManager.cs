@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -121,8 +122,17 @@ public class MenuManager : MonoBehaviour {
 
     public void startEvent(string level) {
         stopRotate();
-        //cam.transform.position = startPos.position;
-        //cam.transform.rotation = startPos.rotation;
-        SceneManager.LoadScene(level);
+        if (PhotonNetwork.IsConnected)
+            PhotonNetwork.LoadLevel(level);
+        else
+            SceneManager.LoadScene(level);
+    }
+
+    public void startEvent(int level) {
+        stopRotate();
+        if (PhotonNetwork.IsConnected)
+            PhotonNetwork.LoadLevel(level);
+        else
+            SceneManager.LoadScene(level);
     }
 }
